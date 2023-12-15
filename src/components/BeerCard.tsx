@@ -15,19 +15,15 @@ const BeerCard = (props: { beer: Beer }) => {
   const { beer } = props;
   const [, addBeer] = useAtom(addToBasketAtom);
   const [basket] = useAtom(basketAtom);
-  const stock = useMemo(
-    () => basket.find((b) => b.beer.id === beer.id)?.quantity,
-    [basket, beer.id]
-  );
 
-  // const beerStockAtom = useMemo(
-  //   () =>
-  //     atom(
-  //       (get) => get(basketAtom).find((b) => b.beer.id === beer.id)?.quantity
-  //     ),
-  //   [beer.id]
-  // );
-  // const [stock] = useAtom(beerStockAtom);
+  const beerStockAtom = useMemo(
+    () =>
+      atom(
+        (get) => get(basketAtom).find((b) => b.beer.id === beer.id)?.quantity
+      ),
+    [beer.id]
+  );
+  const [stock] = useAtom(beerStockAtom);
 
   return (
     <Card
