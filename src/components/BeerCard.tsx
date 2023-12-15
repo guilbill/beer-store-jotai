@@ -14,8 +14,6 @@ import { addToBasketAtom, basketAtom } from "./BeerBasket";
 const BeerCard = (props: { beer: Beer }) => {
   const { beer } = props;
   const [, addBeer] = useAtom(addToBasketAtom);
-  const [basket] = useAtom(basketAtom);
-
   const beerStockAtom = useMemo(
     () =>
       atom(
